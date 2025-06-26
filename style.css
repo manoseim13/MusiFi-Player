@@ -1,0 +1,134 @@
+body, html {
+  height: 100%; margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden; background: #000; color: white;
+}
+
+#background-video {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; filter: brightness(0.5);
+  z-index: 0; pointer-events: none;
+}
+
+#background-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.player-controls {
+  width: 100%; max-width: 500px;
+  padding: 1rem;
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px; margin: 0 auto;
+}
+
+#progress-bar {
+  width: 80%; height: 6px;
+  appearance: none; background: #eee;
+  border-radius: 4px; margin: 10px auto;
+}
+
+#progress-bar::-webkit-slider-thumb,
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width:14px;height:14px;
+  background:#444;border-radius:50%;cursor:pointer;
+}
+
+#volume-slider::-moz-range-thumb,
+#progress-bar::-moz-range-thumb {
+  width:14px;height:14px;
+  background:#444;border-radius:50%;cursor:pointer;
+}
+
+#volume-slider {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+  width: 6px; height: 70px;
+  cursor: pointer; background: #eee;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+
+
+.list-group-item span {
+  color: white !important;
+}
+
+.heart-icon {
+  color: #ccc; font-size:1.1rem;
+  cursor:pointer; transition:transform .2s,color .2s;
+  margin-left:15px;
+}
+
+.heart-icon.favorited {
+  color: red; transform: scale(1.2);
+}
+
+.playlist-section {
+  width: 250px;
+  padding:1rem;
+  background: rgba(0,0,0,0.6);
+  border-radius:12px;
+}
+
+.btn-danger {
+  background-color: red;
+  border: none;
+  border-radius: 20%;
+}
+
+.download-icon {
+  color: #aaa;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.download-icon:hover {
+  color: white;
+}
+.footer {
+  background-color: rgba(0, 0, 0, 0.8); 
+  font-size: 0.9rem;
+  z-index: 1040; 
+}
+.player-controls {
+  margin-bottom: 80px !important; 
+}
+#list {
+  width: 300px;
+  overflow-y: auto;
+}
+
+
+
+.list-group-item span {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list-group-item {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+  
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}

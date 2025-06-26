@@ -1,0 +1,134 @@
+<!-- Save this as index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MusiFi Player</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video id="background-video" autoplay muted loop playsinline></video>
+  <div id="background-overlay"></div>
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 position-relative z-3">
+  <a class="navbar-brand" href="/">🎵 MusiFi</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      
+   
+
+      <!-- Keep existing Favorites -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="favorites-link">❤️ Favorites</a>
+      </li>
+
+      <!-- Keep existing Upload -->
+      <li class="nav-item">
+        <label class="nav-link" for="upload-input" style="cursor: pointer;">⬆️ Upload</label>
+        <input type="file" id="upload-input" accept="audio/*" multiple style="display: none;" />
+      </li>
+         <!-- Social Icons (replacing Music Styles) -->
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.linkedin.com/in/manos-seimanis-4099ba289" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.instagram.com/manos_seimanis/" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      
+        <li class="nav-item">
+        <a class="nav-link" href="https://github.com/manoseim13" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+  <!-- Playlist Sidebar -->
+  <div class="playlist-section position-absolute top-50 start-0 translate-middle-y ms-5 z-3">
+    <h4 class="text-white mb-3">Playlists</h4>
+    <div class="mb-3">
+      <input type="text" id="new-playlist-name" class="form-control form-control-sm mb-1" placeholder="New Playlist" />
+      <button class="btn btn-sm btn-light w-100" id="create-playlist-btn">+ Create</button>
+    </div>
+    <ul id="playlist-list" class="list-group list-group-flush bg-transparent"></ul>
+  </div>
+
+  <!-- Song List -->
+  <div class="list-section position-absolute top-50 end-0 translate-middle-y me-5 z-3">
+    <h4 class="text-white mb-3" id="list-title">Up Next</h4>
+    <ul id="upcoming-list" class="list-group list-group-flush bg-transparent text-white"></ul>
+  </div>
+
+  <!-- Player Controls -->
+  <div class="player-controls position-absolute bottom-0 start-50 translate-middle-x text-center text-white z-3 mb-4 ">
+    <h2 id="song-title">Song Title</h2><p id="song-artist">Artist Name</p>
+    <audio id="audio-player"  style="width: 100%;"></audio>
+    <input type="range" id="progress-bar" value="0" min="0" max="100" />
+    <div class="dropdown mt-3">
+      <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Add to Playlist
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark" id="player-dropdown-menu"></ul>
+    </div>
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+      <button id="prev-btn" class="btn btn-outline-light" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+      <button id="pause-btn" class="btn btn-outline-light"><i class="fa-solid fa-pause"></i></button>
+      <button id="next-btn" class="btn btn-outline-light"><i class="fa-solid fa-forward-step"></i></button>
+      <button id="shuffle-btn" class="btn btn-outline-light"><i class="fa-solid fa-shuffle"></i></button>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" title="Volume" />
+    </div>
+  </div>
+
+  <!-- Playlist Modal -->
+  <div class="modal fade" id="playlistModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title">Add to Playlist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <select id="playlist-select" class="form-select mb-2"></select>
+          <input type="text" id="new-playlist-input" class="form-control" placeholder="Or create new playlist..." />
+        </div>
+        <div class="modal-footer">
+          <button id="save-playlist-btn" class="btn btn-primary">Add</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+<footer class="footer bg-dark text-white text-center py-2 position-fixed bottom-0 start-0 w-100 z-4">
+  <div class="container">
+    <p class="mb-0">© 2025 MusiFi Player | A Portfolio Project by Manos Seimanis</p>
+    <small>Made with ❤️ using HTML, CSS, Bootstrap, and JavaScript</small>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
+
+
+<!-- next time i will change  --1. can delete songs inside playlists --2. uploaded sogs shows up in main page  -->
